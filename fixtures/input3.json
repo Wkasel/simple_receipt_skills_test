@@ -1,0 +1,25 @@
+[{
+		"quantity": 1,
+		"product": "imported bottle of purfume",
+		"product_type":"cosmetic",
+		"price": 27.99
+	},
+	{
+		"quantity": 1,
+		"product": "bottle of purfume",
+		"product_type":"cosmetic",
+		"price": 18.99
+	},
+	{
+		"quantity": 1,
+		"product": "Packet of headache pills",
+		"product_type":"mecical",
+		"price": 9.75
+	},
+	{
+		"quantity": 1,
+		"product": "box of imported chocolates",
+		"product_type":"book",
+		"price": 11.25
+	}
+]
