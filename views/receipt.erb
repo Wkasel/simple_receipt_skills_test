@@ -1,0 +1,10 @@
+<h1>Receipt</h1>
+  <% @items.each do |item| %>
+  <%= item['quantity'] %>,
+  <%= item['product'] %>,
+  <%= item['price'] %>
+  <br />
+  <% end %>
+  <span>Tax: <%= @sales_tax %></span><br />
+  <span>Total: <%= @total %></span><br />
+<a href="/">Back</a> | <a href="download">Download as CSV</a>
