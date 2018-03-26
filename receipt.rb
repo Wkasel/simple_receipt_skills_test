@@ -31,8 +31,6 @@ end
 ##  				METHODS 				##
 #############################
 
-
-
 #checks to see if product type is excempt
 #
 def product_is_excempt(product)
@@ -48,8 +46,8 @@ def to_csv
 		@items.each do |item|
 			csv << [item['quantity'],item['product'],item['price']]
 		end
-		csv << ["Tax", @sales_tax]
-		csv << ["Total", @total]
+		csv << ["","Tax", @sales_tax]
+		csv << ["","Total", @total]
   end
 end
 
@@ -58,15 +56,11 @@ def calc_item_tax_rate(sale_items)
   @sales_tax = 0.00
   @total = 0.00
   sale_items.each do |sale_item|
-
-		if product_is_excempt(sale_item) then item_tax = (round_to_fivecents(sale_item['price']*0.1)).round(2) else item_tax = 0.00 end
-		if sale_item['product'].include? "imported" then import_tax = (round_to_fivecents(sale_item['price']*0.05)).round(2) else import_tax = 0.00 end
-		# sale_item.push({"item_tax":item_tax},{"sale_item":sale_item})
+		if product_is_excempt(sale_item) then item_tax = (round_to_fivecents((sale_item['quantity']*sale_item['price'])*0.1)).round(2) else item_tax = 0.00 end
+		if sale_item['product'].include? "imported" then import_tax = (round_to_fivecents((sale_item['quantity']*sale_item['price'])*0.05)).round(2) else import_tax = 0.00 end
     @sales_tax += (item_tax + import_tax)
     @total += round_to_fivecents(sale_item['price']+@sales_tax)
-		# @data.push(sale_item)
   end
 	@sales_tax = round_to_fivecents(@sales_tax).round(2) # this is messy, I'll come back to it
 	@total = round_to_fivecents(@total).round(2)
-	# @data.push({"Sales Tax":@sales_tax},{"Total":@total})
 end
